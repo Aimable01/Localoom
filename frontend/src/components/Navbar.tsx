@@ -91,7 +91,7 @@ export default function Navbar() {
         ref={menuRef}
         className={`${
           menuOpen ? "top-16" : "-top-full"
-        } pl-2 m-2 flex flex-col gap-2 font-semibold text-gray-600 absolute w-[97%] transition-all duration-700 bg-white
+        } p-5 m-2 flex flex-col gap-2 font-semibold text-gray-600 absolute w-[97%] transition-all duration-700 bg-white z-20
          `}
       >
         {links.map((li) => (
