@@ -1,12 +1,13 @@
 "use client";
 import { LocateFixed, Menu, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { links } from "../lib/links";
 import { usePathname } from "next/navigation";
+import { useMenu } from "@/context/MenuContext";
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const { menuOpen, setMenuOpen } = useMenu();
   const menuRef = useRef<HTMLDivElement | null>(null);
   const iconRef = useRef<HTMLDivElement | null>(null);
 
@@ -31,6 +32,7 @@ export default function Navbar() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

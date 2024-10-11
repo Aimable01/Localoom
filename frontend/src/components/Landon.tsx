@@ -1,9 +1,12 @@
+"use client";
 import Image from "next/image";
 import image1 from "../assets/image1.jpeg";
+import { useMenu } from "@/context/MenuContext";
 
 export default function Landon() {
+  const { menuOpen } = useMenu();
   return (
-    <div className="my-2 md:mx-10">
+    <div className="my-2 md:mx-10 relative">
       <div className="relative h-[450px] w-[100%]">
         <Image
           src={image1}
@@ -26,6 +29,12 @@ export default function Landon() {
           </div>
         </div>
       </div>
+
+      <div
+        className={`${
+          menuOpen ? "absolute" : "hidden"
+        } h-[520px] w-full opacity-75 bg-black top-0 left-0`}
+      ></div>
     </div>
   );
 }
