@@ -3,11 +3,15 @@ import { LocateFixed, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { links } from "../lib/links";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const iconRef = useRef<HTMLDivElement | null>(null);
+
+  // check for active link
+  const pathName = usePathname();
 
   // handle click outside to close the menu
   const handleClickOutside = (e: MouseEvent) => {
@@ -31,20 +35,46 @@ export default function Navbar() {
 
   return (
     <div>
-      <div className="m-3 flex justify-between">
+      <div className="m-3 flex justify-between md:mx-10">
         {/* logo */}
         <Link href={"/"} className="flex items-center gap-1">
-          <LocateFixed className="text-sky-500" height={34} width={34} />
+          <LocateFixed className="text-cyan-500" height={34} width={34} />
           <h1 className="font-bold text-gray-700 text-xl rounded-sm">
             LocaLoom
           </h1>
         </Link>
 
+        {/* the links on deskop */}
+
+        <div className="hidden md:flex font-semibold text-gray-600 gap-5">
+          {links.map((li) => (
+            <Link
+              key={li.name}
+              href={li.path}
+              className={`hover:text-cyan-500 duration-500 ${
+                pathName === li.path ? "text-cyan-500" : ""
+              }`}
+            >
+              {li.name}
+            </Link>
+          ))}
+
+          {/* the call to action button */}
+          <div className="ml-10">
+            <Link
+              href={"/create"}
+              className="bg-cyan-500 hover:bg-cyan-700 duration-500 text-white px-3 py-2 rounded-md"
+            >
+              Create
+            </Link>
+          </div>
+        </div>
+
         {/* menu icon */}
         <div
           ref={iconRef}
           onClick={() => setMenuOpen(!menuOpen)}
-          className="cursor-pointer"
+          className="cursor-pointer md:hidden"
         >
           {menuOpen ? (
             <X className="text-gray-700" height={25} width={25} />
@@ -61,17 +91,30 @@ export default function Navbar() {
         ref={menuRef}
         className={`${
           menuOpen ? "top-16" : "-top-full"
-        } m-2 flex flex-col gap-2 font-semibold text-gray-600 absolute w-[97%] transition-all duration-700 bg-white`}
+        } pl-2 m-2 flex flex-col gap-2 font-semibold text-gray-600 absolute w-[97%] transition-all duration-700 bg-white
+         `}
       >
         {links.map((li) => (
           <Link
             key={li.name}
             href={li.path}
-            className="hover:text-sky-500 duration-500"
+            className={`hover:text-cyan-500 duration-500 ${
+              pathName === li.path ? "text-cyan-500" : ""
+            }`}
           >
             {li.name}
           </Link>
         ))}
+
+        {/* the call to action button */}
+        <div className="mt-3">
+          <Link
+            href={"/create"}
+            className="bg-cyan-500 hover:bg-cyan-700 duration-500 text-white px-3 py-2 rounded-md"
+          >
+            Create
+          </Link>
+        </div>
       </div>
     </div>
   );
