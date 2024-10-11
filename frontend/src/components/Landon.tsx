@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
 import image1 from "../assets/image1.jpeg";
-import { useMenu } from "@/context/MenuContext";
+import { useMenuStore } from "@/stores/menuStore";
 
 export default function Landon() {
-  const { menuOpen } = useMenu();
+  const { menuOpen } = useMenuStore();
+
   return (
     <div className="my-2 md:mx-10 relative">
       <div className="relative h-[450px] w-[100%]">

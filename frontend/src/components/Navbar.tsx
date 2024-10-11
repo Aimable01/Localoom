@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { links } from "../lib/links";
 import { usePathname } from "next/navigation";
-import { useMenu } from "@/context/MenuContext";
+import { useMenuStore } from "@/stores/menuStore";
 
 export default function Navbar() {
-  const { menuOpen, setMenuOpen } = useMenu();
+  const { menuOpen, setMenuOpen } = useMenuStore();
   const menuRef = useRef<HTMLDivElement | null>(null);
   const iconRef = useRef<HTMLDivElement | null>(null);
 
