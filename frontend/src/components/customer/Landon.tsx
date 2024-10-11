@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import image1 from "../assets/image1.jpeg";
+import image1 from "../../assets/image1.jpeg";
 import { useMenuStore } from "@/stores/menuStore";
 
 export default function Landon() {

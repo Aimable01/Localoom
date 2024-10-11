@@ -2,7 +2,7 @@
 import { LocateFixed, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { links } from "../lib/links";
+import { links } from "../../lib/links";
 import { usePathname } from "next/navigation";
 import { useMenuStore } from "@/stores/menuStore";
 

@@ -1,5 +1,5 @@
-import Landon from "../components/Landon";
-import Navbar from "../components/Navbar";
+import Landon from "../components/customer/Landon";
+import Navbar from "../components/customer/Navbar";
 
 export default function Home() {
   return (
