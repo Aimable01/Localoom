@@ -4,12 +4,18 @@ import { RefreshCcwDot, Settings, Tag } from "lucide-react";
 
 import image1 from "../../assets/image2.png";
 import image2 from "../../assets/image3.png";
+import { Accordion } from "@radix-ui/react-accordion";
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../ui/accordion";
 
 export default function LandonPage() {
   return (
     <div className="px-10 md:px-20">
       {/* the first section */}
-      <div className="my-4 md:flex gap-5 items-center">
+      <div className="my-10 md:flex gap-5 items-center">
         <div className="text-center">
           <h1 className="text-3xl md:text-6xl font-semibold text-gray-800">
             Stand out in your community with a free <br />{" "}
@@ -39,7 +45,7 @@ export default function LandonPage() {
       </div>
 
       {/* the second section */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-10">
+      <div className="my-24 flex flex-col md:flex-row items-center justify-center gap-10">
         <div className="flex flex-col items-center justify-center">
           <div className="bg-cyan-100 rounded-full w-[100px] h-[100px] p-7">
             <Tag className="fill-cyan-500 text-white" width={50} height={50} />
@@ -76,7 +82,7 @@ export default function LandonPage() {
       </div>
 
       {/* the third section */}
-      <div className="my-4 md:flex gap-5 items-center">
+      <div className="my-24 md:flex gap-5 items-center">
         <div>
           <Image
             src={image2}
@@ -103,7 +109,7 @@ export default function LandonPage() {
       </div>
 
       {/* the fourth section */}
-      <div className="bg-cyan-50 my-10 p-6 flex flex-col md:flex-row items-center justify-center gap-10">
+      <div className="bg-cyan-50  my-28 p-6 flex flex-col md:flex-row items-center justify-center gap-10">
         <div className="flex flex-col items-center justify-center">
           <div className="text-center bg-white rounded-full w-[100px] h-[100px] p-7">
             <p className="font-bold text-3xl text-cyan-500">1</p>
@@ -142,6 +148,28 @@ export default function LandonPage() {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* the FAQ section */}
+      <div className="my-28">
+        <div className="text-center">
+          <h1 className="text-3xl text-gray-800 font-bold">
+            Your questions answered
+          </h1>
+        </div>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              Is creating a business profile free?
+            </AccordionTrigger>
+            <AccordionContent>
+              Yes, creating a Business Profile and listing your business is
+              free. Create your profile at no cost, and you can manage your
+              business from Google Search and Maps to start reaching more
+              customers.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </div>
   );
