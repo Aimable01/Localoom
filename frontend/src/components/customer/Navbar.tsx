@@ -37,7 +37,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <div className="flex justify-between sticky top-0 z-50 px-3 py-4 md:px-20 w-full backdrop-blur-3xl bg-white/70 shadow-md">
+      <div className="flex justify-between sticky top-0 z-50 px-3 py-4 md:px-20 w-full backdrop-blur-3xl bg-white/5 shadow-md">
         {/* logo */}
         <Link href={"/"} className="flex items-center gap-1">
           <LocateFixed className="text-cyan-500" height={34} width={34} />
