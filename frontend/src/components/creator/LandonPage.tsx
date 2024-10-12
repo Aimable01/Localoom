@@ -1,11 +1,13 @@
 import Image from "next/image";
-import image1 from "../../assets/image2.png";
 import Link from "next/link";
 import { RefreshCcwDot, Settings, Tag } from "lucide-react";
 
+import image1 from "../../assets/image2.png";
+import image2 from "../../assets/image3.png";
+
 export default function LandonPage() {
   return (
-    <div className="mx-10 md:mx-20">
+    <div className="px-10 md:px-20">
       {/* the first section */}
       <div className="my-4 md:flex gap-5 items-center">
         <div className="text-center">
@@ -37,15 +39,108 @@ export default function LandonPage() {
       </div>
 
       {/* the second section */}
-      <div>
-        <div>
-          <Tag className="fill-cyan-500 text-white" />
+      <div className="flex flex-col md:flex-row items-center justify-center gap-10">
+        <div className="flex flex-col items-center justify-center">
+          <div className="bg-cyan-100 rounded-full w-[100px] h-[100px] p-7">
+            <Tag className="fill-cyan-500 text-white" width={50} height={50} />
+          </div>
+          <div className="text-center">
+            <h1 className="font-bold text-lg m-2">Free</h1>
+            <p className="text-gray-800">
+              Create a business profile at no cost
+            </p>
+          </div>
         </div>
-        <div>
-          <RefreshCcwDot className="text-cyan-500" />
+
+        <div className="flex flex-col items-center justify-center">
+          <div className="bg-orange-100 rounded-full w-[100px] h-[100px] p-7">
+            <RefreshCcwDot className="text-orange-500" width={50} height={50} />
+          </div>
+          <div className="text-center">
+            <h1 className="font-bold text-lg m-2">Easy</h1>
+            <p className="text-gray-800">
+              Manage your profile from Search and Maps
+            </p>
+          </div>
         </div>
+
+        <div className="flex flex-col items-center justify-center">
+          <div className="bg-green-100 rounded-full w-[100px] h-[100px] p-7">
+            <Settings className="text-green-500" width={50} height={50} />
+          </div>
+          <div className="text-center">
+            <h1 className="font-bold text-lg m-2">Personalized</h1>
+            <p className="text-gray-800">Add hours, photos, posts and more</p>
+          </div>
+        </div>
+      </div>
+
+      {/* the third section */}
+      <div className="my-4 md:flex gap-5 items-center">
         <div>
-          <Settings className="text-cyan-500" />
+          <Image
+            src={image2}
+            alt="A customer support svg"
+            className="h-[500px] w-[900px]"
+          />
+        </div>
+
+        <div className="text-center">
+          <h1 className="text-2xl md:text-4xl font-semibold text-gray-800">
+            Take charge of your first impression
+          </h1>
+          <p className="py-3 text-gray-700 mb-8">
+            Highlight essential info and what makes your business unique, right
+            on your Business profile.
+          </p>
+          <Link
+            className="bg-cyan-500 hover:bg-cyan-700  duration-500 text-[15px] text-gray-100 px-5 py-3 rounded-lg font-semibold"
+            href={"/signup"}
+          >
+            Create profile
+          </Link>
+        </div>
+      </div>
+
+      {/* the fourth section */}
+      <div className="bg-cyan-50 my-10 p-6 flex flex-col md:flex-row items-center justify-center gap-10">
+        <div className="flex flex-col items-center justify-center">
+          <div className="text-center bg-white rounded-full w-[100px] h-[100px] p-7">
+            <p className="font-bold text-3xl text-cyan-500">1</p>
+          </div>
+          <div className="text-center">
+            <h1 className="font-bold text-lg m-2">Claim</h1>
+            <p className="text-gray-800">
+              Create a Business Profile, or manage an existing profile on Search
+              and Maps
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-center">
+          <div className="text-center bg-white rounded-full w-[100px] h-[100px] p-7">
+            <p className="font-bold text-3xl text-cyan-500">2</p>
+          </div>
+          <div className="text-center">
+            <h1 className="font-bold text-lg m-2">Personalize</h1>
+            <p className="text-gray-800">
+              Add hours, photos, and other details and get discovered by
+              customers near you
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-center">
+          <div className="text-center bg-white rounded-full w-[100px] h-[100px] p-7">
+            <p className="font-bold text-3xl text-cyan-500">3</p>
+          </div>
+          <div className="text-center">
+            <h1 className="font-bold text-lg m-2">Manage</h1>
+            <p className="text-gray-800">
+              Share updates, respond to reviews, and connect with customers on
+              Google
+            </p>
+          </div>
         </div>
       </div>
     </div>
