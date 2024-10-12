@@ -37,7 +37,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <div className="m-3 flex justify-between md:mx-10">
+      <div className="flex justify-between sticky top-0 z-50 px-3 py-4 md:px-20 w-full backdrop-blur-3xl bg-white/70 shadow-md">
         {/* logo */}
         <Link href={"/"} className="flex items-center gap-1">
           <LocateFixed className="text-cyan-500" height={34} width={34} />
@@ -92,7 +92,7 @@ export default function Navbar() {
       <div
         ref={menuRef}
         className={`${
-          menuOpen ? "top-16" : "-top-full"
+          menuOpen ? "top-20" : "-top-full"
         } p-5 m-2 flex flex-col gap-2 font-semibold text-gray-600 absolute w-[97%] transition-all duration-700 bg-white z-20
          `}
       >
@@ -103,6 +103,7 @@ export default function Navbar() {
             className={`hover:text-cyan-500 duration-500 ${
               pathName === li.path ? "text-cyan-500" : ""
             }`}
+            onClick={() => setMenuOpen(!menuOpen)}
           >
             {li.name}
           </Link>
@@ -113,6 +114,7 @@ export default function Navbar() {
           <Link
             href={"/create"}
             className="bg-cyan-500 hover:bg-cyan-700 duration-500 text-white px-3 py-2 rounded-md"
+            onClick={() => setMenuOpen(!menuOpen)}
           >
             Create
           </Link>
