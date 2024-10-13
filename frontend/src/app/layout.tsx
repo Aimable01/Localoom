@@ -5,7 +5,10 @@ import "./globals.css";
 
 // The app's metadata
 export const metadata: Metadata = {
-  title: "LocaLoom",
+  title: {
+    default: "Localoom",
+    template: " %s | Localoom",
+  },
   description:
     "A site that brings to you all the local businesses in an area that you are new to.",
 };
