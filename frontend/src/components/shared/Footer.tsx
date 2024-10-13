@@ -4,18 +4,17 @@ export default function Footer() {
   return (
     <footer className="bg-white w-full py-8 shadow-md">
       <div className="max-w-[1200px] mx-auto px-5">
-        {/* Top section: Service Links */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 mb-8">
-          {/* Our Services */}
+          {/* services */}
           <div>
             <h3 className="font-bold text-gray-700 mb-4">Our services</h3>
             <ul className="space-y-2">
               {[
-                "Business marketing",
-                "Property management",
-                "Real estate booking",
-                "Property maintenance",
-                "Terms of services",
+                "Industry advertisement",
+                "Location discovery",
+                "Service listings",
+                "Interactive maps",
+                "Business profiles",
               ].map((service) => (
                 <li key={service}>
                   <Link
@@ -29,7 +28,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Quick Links */}
+          {/* quick Links */}
           <div>
             <h3 className="font-bold text-gray-700 mb-4">Quick links</h3>
             <ul className="space-y-2">
@@ -70,7 +69,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* contact */}
           <div>
             <h3 className="font-bold text-gray-700 mb-4">Contact us</h3>
             <ul className="space-y-2 text-gray-600">
@@ -81,19 +80,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <hr className="border-t border-gray-200 mb-8" />
 
-        {/* Bottom section: Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Social Media Links (Optional for your use) */}
-          <div className="flex gap-4 text-gray-600">
-            {/* Add social media icons if needed */}
-          </div>
+          <div className="flex gap-4 text-gray-600"></div>
 
-          {/* Copyright */}
           <p className="text-gray-500 text-center mt-4 md:mt-0">
-            © {new Date().getFullYear()} LocaLoom. All rights reserved.
+            &copy; {new Date().getFullYear()} LocaLoom. All rights reserved.
           </p>
         </div>
       </div>
