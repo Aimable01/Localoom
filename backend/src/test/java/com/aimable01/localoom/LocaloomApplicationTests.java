@@ -1,10 +1,10 @@
-package com.aimable01.backend;
+package com.aimable01.localoom;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class LocaloomApplicationTests {
 
 	@Test
 	void contextLoads() {

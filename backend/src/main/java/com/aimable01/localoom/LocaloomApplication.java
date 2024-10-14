@@ -1,13 +1,13 @@
-package com.aimable01.backend;
+package com.aimable01.localoom;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class LocaloomApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(LocaloomApplication.class, args);
 	}
 
 }
