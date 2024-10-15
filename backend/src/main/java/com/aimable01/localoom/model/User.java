@@ -1,4 +1,4 @@
-package com.aimable01.localoom.models;
+package com.aimable01.localoom.model;
 
 import jakarta.persistence.*;
 
