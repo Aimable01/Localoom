@@ -34,11 +34,10 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).getClass(token);
+            Jwts.parser().setSigningKey(jwtSecret).getClass();
             return true;
         } catch (Exception e) {
             throw new RuntimeException(e);
-            return false;
         }
     }
 }

@@ -5,7 +5,9 @@ import com.aimable01.localoom.dto.LoginRequest;
 import com.aimable01.localoom.dto.SignupRequest;
 import com.aimable01.localoom.model.User;
 import com.aimable01.localoom.security.JwtTokenProvider;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthService {
     private final UserService userService;
     private final JwtTokenProvider jwtTokenProvider;
