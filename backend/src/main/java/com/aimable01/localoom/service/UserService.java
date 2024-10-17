@@ -6,7 +6,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class UserService {
@@ -33,12 +32,6 @@ public class UserService {
 
     public User signup(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setVerificationCode(generateVerificationCode());
-        user.setVerified(false);
         return userRepository.save(user);
-    }
-
-    private String generateVerificationCode() {
-        return UUID.randomUUID().toString();
     }
 }

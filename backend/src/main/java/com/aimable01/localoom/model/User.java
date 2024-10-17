@@ -17,9 +17,6 @@ public class User {
 
     private String password;
 
-    private boolean isVerified;
-
-    private String verificationCode;
 
     public String getId() {
         return id;
@@ -53,19 +50,4 @@ public class User {
         this.password = password;
     }
 
-    public boolean isVerified() {
-        return isVerified;
-    }
-
-    public void setVerified(boolean verified) {
-        isVerified = verified;
-    }
-
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
-    }
 }

@@ -17,10 +17,15 @@ public class AuthController {
         this.authService = authService;
     }
 
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok("Hello World");
+    }
+
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest) {
         authService.signup(signupRequest);
-        return ResponseEntity.ok("User registered successfully, please verify your email");
+        return ResponseEntity.ok("User registered successfully");
     }
 
     @PostMapping("/login")
@@ -28,9 +33,4 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(loginRequest));
     }
 
-    @PostMapping("/verify")
-    public ResponseEntity<?> verify(@RequestParam String email,@RequestParam String code) {
-        authService.verifyEmail(email, code);
-        return ResponseEntity.ok("Email verified successfully");
-    }
 }

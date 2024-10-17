@@ -11,12 +11,10 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private final UserService userService;
     private final JwtTokenProvider jwtTokenProvider;
-    private final EmailService emailService;
 
-    public AuthService(UserService userService, JwtTokenProvider jwtTokenProvider, EmailService emailService) {
+    public AuthService(UserService userService, JwtTokenProvider jwtTokenProvider) {
         this.userService = userService;
         this.jwtTokenProvider = jwtTokenProvider;
-        this.emailService = emailService;
     }
 
     public void signup(SignupRequest signupRequest) {
@@ -27,16 +25,11 @@ public class AuthService {
 
         user = userService.signup(user);
 
-        emailService.sendVerificationEmail(user);
-
     }
 
     public JwtResponse login(LoginRequest loginRequest) {
 
         User user = userService.findByEmail(loginRequest.getEmail()).orElseThrow(() -> new RuntimeException("Email not found"));
-        if (!user.isVerified()) {
-            throw new RuntimeException("Email is not verified");
-        }
 
         if (!user.getPassword().equals(loginRequest.getPassword())) {
             throw new RuntimeException("Password not matched");
@@ -46,15 +39,5 @@ public class AuthService {
         String refreshToken = jwtTokenProvider.generateRefreshToken(user);
 
         return new JwtResponse(accessToken, refreshToken);
-    }
-
-    public void verifyEmail(String email, String code) {
-        User user = userService.findByEmail(email).orElseThrow(() -> new RuntimeException("Email not found"));
-        if (!user.getVerificationCode().equals(code)) {
-            throw new RuntimeException("Verification code not matched");
-        }
-        user.setVerified(true);
-        user.setVerificationCode(null);
-        userService.save(user);
     }
 }
