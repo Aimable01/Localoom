@@ -23,14 +23,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeRequests(req -> req.requestMatchers("/auth/signup","auth/hello","auth/login").permitAll()
-                        .anyRequest().authenticated()
+                .csrf(AbstractHttpConfigurer::disable)  // CSRF disabled for stateless JWT usage
+                .authorizeHttpRequests(req -> req
+                        .requestMatchers("/auth/signup", "/auth/hello", "/auth/login").permitAll()  // Public endpoints
+                        .anyRequest().authenticated()  // Other requests require authentication
                 )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)  // Stateless session management
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)  // Add JWT filter before authentication filter
                 .build();
     }
 }
