@@ -4,17 +4,16 @@ import com.aimable01.localoom.dto.JwtResponse;
 import com.aimable01.localoom.dto.LoginRequest;
 import com.aimable01.localoom.dto.SignupRequest;
 import com.aimable01.localoom.model.User;
-import com.aimable01.localoom.security.JwtTokenProvider;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
     private final UserService userService;
-    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtService jwtService;
 
-    public AuthService(UserService userService, JwtTokenProvider jwtTokenProvider) {
+    public AuthService(UserService userService, JwtService jwtService) {
         this.userService = userService;
-        this.jwtTokenProvider = jwtTokenProvider;
+        this.jwtService = jwtService;
     }
 
     public void signup(SignupRequest signupRequest) {
@@ -35,8 +34,8 @@ public class AuthService {
             throw new RuntimeException("Password not matched");
         }
 
-        String accessToken = jwtTokenProvider.generateAccessToken(user);
-        String refreshToken = jwtTokenProvider.generateRefreshToken(user);
+        String accessToken = jwtService.generateToken(user);
+        String refreshToken = jwtService.generateToken(user);
 
         return new JwtResponse(accessToken, refreshToken);
     }

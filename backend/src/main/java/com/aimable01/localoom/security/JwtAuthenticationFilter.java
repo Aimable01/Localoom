@@ -1,10 +1,15 @@
 package com.aimable01.localoom.security;
 
+import com.aimable01.localoom.service.JwtService;
+import com.aimable01.localoom.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -12,29 +17,24 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+    private final JwtService jwtService;
+    private final UserService userService;
 
-    private final JwtTokenProvider jwtTokenProvider;
-
-    // Constructor only injects JwtTokenProvider, not JwtAuthenticationFilter itself
-    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {
-        this.jwtTokenProvider = jwtTokenProvider;
+    public JwtAuthenticationFilter(JwtService jwtService) {
+        this.jwtService = jwtService;
     }
 
     @Override
-    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String token = extractToken(request);
-        if (token != null && jwtTokenProvider.validateToken(token)) {
-            // Authentication logic can be added here if needed
-            SecurityContextHolder.getContext().setAuthentication(null);
-        }
-        filterChain.doFilter(request, response);
-    }
+    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            String id = jwtService.getId(token);
 
-    private String extractToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7);
+            if(id != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+                UserDetails userDetails = userService.findById(id);
+            }
         }
-        return null;
     }
 }
